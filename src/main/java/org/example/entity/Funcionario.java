@@ -1,6 +1,9 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,6 +16,8 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Column(columnDefinition = "VARCHAR(36)")
     private UUID id;
 
     @Column(nullable = false)
@@ -34,6 +39,7 @@ public class Funcionario {
     @Column(nullable = false)
     private String funcao;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "funcionario_departamento",

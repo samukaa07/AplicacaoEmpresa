@@ -35,7 +35,7 @@ public class FuncionarioService {
     }
 
     /**
-     * Esse metodo Retorna os funcionários com salário maior que o valor informado,
+     * Esse metodo Retorna os funcionários com salário maior que 0,
      * usando Stream API e uma Functional Interface personalizada.
      */
     public List<Funcionario> listarComSalarioMaiorQue(BigDecimal valorMinimo) {

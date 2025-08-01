@@ -1,6 +1,9 @@
 package org.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +14,8 @@ public class Departamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Column(columnDefinition = "VARCHAR(36)")
     private UUID id;
 
     @Column(nullable = false)
@@ -19,13 +24,13 @@ public class Departamento {
     @Column(nullable = false)
     private Integer qtdeFuncionarios;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "departamentos")
     private Set<Funcionario> funcionarios = new HashSet<>();
 
     // Constructors
     public Departamento() {}
 
-    // Getters and Setters
     public UUID getId() {
         return id;
     }
